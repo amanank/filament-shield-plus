@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Policies;
+namespace {{ namespace }};
 
-use App\Models\User;
+use {{ auth_model_fqcn }};
+use {{ model_fqcn }};
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class {{ modelPolicy }}
@@ -10,71 +11,98 @@ class {{ modelPolicy }}
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the {{ auth_model_variable }} can view any models.
      */
-    public function viewAny(User $user)
+    public function viewAny({{ auth_model_name }} ${{ auth_model_variable }}): bool
     {
-        if($user->can('{{ ViewAny }}')) {
-            return true;
-        }
+        return ${{ auth_model_variable }}->can('{{ ViewAny }}');
     }
 
     /**
-     * Determine whether the user can view the model.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the {{ auth_model_variable }} can view the model.
      */
-    public function view(User $user)
+    public function view({{ auth_model_name }} ${{ auth_model_variable }}, {{ model_name }} ${{ model_variable }}): bool
     {
-        return $user->can('{{ View }}');
+        return ${{ auth_model_variable }}->can('{{ View }}');
     }
 
     /**
-     * Determine whether the user can create models.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the {{ auth_model_variable }} can create models.
      */
-    public function create(User $user)
+    public function create({{ auth_model_name }} ${{ auth_model_variable }}): bool
     {
-        return $user->can('{{ Create }}');
+        return ${{ auth_model_variable }}->can('{{ Create }}');
     }
 
     /**
-     * Determine whether the user can update the model.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the {{ auth_model_variable }} can update the model.
      */
-    public function update(User $user)
+    public function update({{ auth_model_name }} ${{ auth_model_variable }}, {{ model_name }} ${{ model_variable }}): bool
     {
-        return $user->can('{{ Update }}');
+        return ${{ auth_model_variable }}->can('{{ Update }}');
     }
 
     /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the {{ auth_model_variable }} can delete the model.
      */
-    public function delete(User $user)
+    public function delete({{ auth_model_name }} ${{ auth_model_variable }}, {{ model_name }} ${{ model_variable }}): bool
     {
-        return $user->can('{{ Delete }}');
+        return ${{ auth_model_variable }}->can('{{ Delete }}');
     }
 
     /**
-     * Determine whether the user can bulk delete.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Auth\Access\Response|bool
+     * Determine whether the {{ auth_model_variable }} can bulk delete.
      */
-    public function deleteAny(User $user)
+    public function deleteAny({{ auth_model_name }} ${{ auth_model_variable }}): bool
     {
-        return $user->can('{{ DeleteAny }}');
+        return ${{ auth_model_variable }}->can('{{ DeleteAny }}');
     }
 
+    /**
+     * Determine whether the {{ auth_model_variable }} can permanently delete.
+     */
+    public function forceDelete({{ auth_model_name }} ${{ auth_model_variable }}, {{ model_name }} ${{ model_variable }}): bool
+    {
+        return ${{ auth_model_variable }}->can('{{ ForceDelete }}');
+    }
+
+    /**
+     * Determine whether the {{ auth_model_variable }} can permanently bulk delete.
+     */
+    public function forceDeleteAny({{ auth_model_name }} ${{ auth_model_variable }}): bool
+    {
+        return ${{ auth_model_variable }}->can('{{ ForceDeleteAny }}');
+    }
+
+    /**
+     * Determine whether the {{ auth_model_variable }} can restore.
+     */
+    public function restore({{ auth_model_name }} ${{ auth_model_variable }}, {{ model_name }} ${{ model_variable }}): bool
+    {
+        return ${{ auth_model_variable }}->can('{{ Restore }}');
+    }
+
+    /**
+     * Determine whether the {{ auth_model_variable }} can bulk restore.
+     */
+    public function restoreAny({{ auth_model_name }} ${{ auth_model_variable }}): bool
+    {
+        return ${{ auth_model_variable }}->can('{{ RestoreAny }}');
+    }
+
+    /**
+     * Determine whether the {{ auth_model_variable }} can replicate.
+     */
+    public function replicate({{ auth_model_name }} ${{ auth_model_variable }}, {{ model_name }} ${{ model_variable }}): bool
+    {
+        return ${{ auth_model_variable }}->can('{{ Replicate }}');
+    }
+
+    /**
+     * Determine whether the {{ auth_model_variable }} can reorder.
+     */
+    public function reorder({{ auth_model_name }} ${{ auth_model_variable }}): bool
+    {
+        return ${{ auth_model_variable }}->can('{{ Reorder }}');
+    }
 }

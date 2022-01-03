@@ -2,6 +2,7 @@
 
 namespace BezhanSalleh\FilamentShield\Commands\Concerns;
 
+use BezhanSalleh\FilamentShield\Support\Utils;
 use Illuminate\Support\Str;
 
 trait CanGeneratePolicy
@@ -17,28 +18,54 @@ trait CanGeneratePolicy
             ->replace('/', '\\');
     }
 
-    protected function generatePolicyPath(string $model): string
+    protected function generatePolicyPath(array $entity): string
     {
-        $basePolicyPath = app_path(
-            (string) Str::of($model)
-            ->prepend('Policies\\')
-            ->replace('\\', '/'),
-        );
+        $path = (new \ReflectionClass($entity['fqcn']::getModel()))->getFileName();
 
-        return "{$basePolicyPath}Policy.php";
+        if (Str::of($path)->contains(['vendor', 'src'])) {
+            $basePolicyPath = app_path(
+                (string) Str::of($entity['model'])
+                    ->prepend(str(Utils::getPolicyPath())->append('\\'))
+                    ->replace('\\', DIRECTORY_SEPARATOR),
+            );
+
+            return "{$basePolicyPath}Policy.php";
+        }
+
+        /** @phpstan-ignore-next-line */
+        $basePath = Str::of($path)
+            ->replace('Models', Utils::getPolicyPath())
+            ->replaceLast('.php', 'Policy.php')
+            ->replace('\\', DIRECTORY_SEPARATOR);
+
+        return $basePath;
     }
 
-    protected function generatePolicyStubVariables(string $model): array
+    protected function generatePolicyStubVariables(array $entity): array
     {
-        $defaultPermissions = collect(config('filament-shield.default_permission_prefixes'))
-            ->reduce(function ($gates, $permission) use ($model) {
-                $gates[Str::studly($permission)] = $permission.'_'.Str::lower($model);
+        $stubVariables = collect(Utils::getResourcePermissionPrefixes($entity['fqcn']))
+            ->reduce(function ($gates, $permission) use ($entity) {
+                $gates[Str::studly($permission)] = $permission . '_' . $entity['resource'];
 
                 return $gates;
             }, []);
 
-        $defaultPermissions['modelPolicy'] = "{$model}Policy";
+        $stubVariables['auth_model_fqcn'] = Utils::getAuthProviderFQCN();
+        $stubVariables['auth_model_name'] = Str::of($stubVariables['auth_model_fqcn'])->afterLast('\\');
+        $stubVariables['auth_model_variable'] = Str::of($stubVariables['auth_model_name'])->camel();
 
-        return $defaultPermissions;
+        $reflectionClass = new \ReflectionClass($entity['fqcn']::getModel());
+        $namespace = $reflectionClass->getNamespaceName();
+        $path = $reflectionClass->getFileName();
+
+        $stubVariables['namespace'] = Str::of($path)->contains(['vendor', 'src'])
+            ? 'App\\' . Utils::getPolicyNamespace()
+            : Str::of($namespace)->replace('Models', Utils::getPolicyNamespace()); /** @phpstan-ignore-line */
+        $stubVariables['model_name'] = $entity['model'];
+        $stubVariables['model_fqcn'] = $namespace . '\\' . $entity['model'];
+        $stubVariables['model_variable'] = Str::of($entity['model'])->camel();
+        $stubVariables['modelPolicy'] = "{$entity['model']}Policy";
+
+        return $stubVariables;
     }
 }
