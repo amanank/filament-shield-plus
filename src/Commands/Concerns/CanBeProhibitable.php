@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentShield\Commands\Concerns;
+namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
 
 // Introduced in Laravel 11.9 should be removed when support for Laravel 10 is dropped
 trait CanBeProhibitable

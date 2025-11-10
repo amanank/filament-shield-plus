@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentShield\Commands\Concerns;
+namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
 
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Illuminate\Support\Str;

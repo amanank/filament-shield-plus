@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentShield\Commands;
+namespace AmanAnk\FilamentShieldPlus\Commands;
 
 use BezhanSalleh\FilamentShield\Stringer;
 use BezhanSalleh\FilamentShield\Support\Utils;

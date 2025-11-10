@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentShield;
+namespace AmanAnk\FilamentShieldPlus;
 
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Closure;

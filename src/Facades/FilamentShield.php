@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentShield\Facades;
+namespace AmanAnk\FilamentShieldPlus\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

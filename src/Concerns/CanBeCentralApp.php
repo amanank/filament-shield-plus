@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentShield\Concerns;
+namespace AmanAnk\FilamentShieldPlus\Concerns;
 
 use Closure;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentShield;
+namespace AmanAnk\FilamentShieldPlus;
 
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Contracts\Plugin;

@@ -1,8 +1,8 @@
 {
-    "name": "bezhansalleh/filament-shield",
+    "name": "amanank/filament-shield-plus",
     "description": "Filament support for `spatie/laravel-permission`.",
     "keywords": [
-        "bezhanSalleh",
+        "amanank",
         "laravel",
         "filament",
         "filament-shield",
@@ -13,12 +13,12 @@
         "rbac",
         "security"
     ],
-    "homepage": "https://github.com/bezhansalleh/filament-shield",
+    "homepage": "https://github.com/amanank/filament-shield-plus",
     "license": "MIT",
     "authors": [
         {
-            "name": "Bezhan Salleh",
-            "email": "bezhan_salleh@yahoo.com",
+            "name": "Aman Ank",
+            "email": "aman@example.com",
             "role": "Developer"
         }
     ],

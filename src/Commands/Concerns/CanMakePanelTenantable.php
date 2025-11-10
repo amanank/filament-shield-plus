@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentShield\Commands\Concerns;
+namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
 
 use BezhanSalleh\FilamentShield\Stringer;
 use Filament\Panel;

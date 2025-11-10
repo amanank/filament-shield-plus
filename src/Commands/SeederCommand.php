@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentShield\Commands;
+namespace AmanAnk\FilamentShieldPlus\Commands;
 
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Illuminate\Console\Command;

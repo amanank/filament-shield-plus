@@ -1,6 +1,6 @@
 <?php
 
-namespace BezhanSalleh\FilamentShield\Traits;
+namespace AmanAnk\FilamentShieldPlus\Traits;
 
 use BezhanSalleh\FilamentShield\Support\Utils;
 use Filament\Facades\Filament;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace BezhanSalleh\FilamentShield\Commands;
+namespace AmanAnk\FilamentShieldPlus\Commands;
 
 use Filament\Facades\Filament;
 use Illuminate\Console\Command;
