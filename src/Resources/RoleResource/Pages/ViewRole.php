@@ -1,17 +1,15 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Resources\RoleResource\Pages;
+namespace Amanank\FilamentShield\Resources\RoleResource\Pages;
 
-use AmanAnk\FilamentShieldPlus\Resources\RoleResource;
+use Amanank\FilamentShield\Resources\RoleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 
-class ViewRole extends ViewRecord
-{
+class ViewRole extends ViewRecord {
     protected static string $resource = RoleResource::class;
 
-    protected function getActions(): array
-    {
+    protected function getActions(): array {
         return [
             Actions\EditAction::make(),
         ];

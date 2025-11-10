@@ -4,12 +4,11 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus;
+namespace Amanank\FilamentShield;
 
 use Illuminate\Support\Traits\Conditionable;
 
-class Stringer
-{
+class Stringer {
     use Conditionable;
 
     protected string $content;
@@ -22,8 +21,7 @@ class Stringer
 
     protected bool $addNewLine = false; // Track whether to add a new line
 
-    public function __construct(string $filePath)
-    {
+    public function __construct(string $filePath) {
         $this->filePath = static::normalizePath($filePath);
         $content = file_get_contents($this->filePath);
 
@@ -35,8 +33,7 @@ class Stringer
         $this->content = str_replace(["\r\n", "\r"], "\n", $content);
     }
 
-    public static function for(string $filePath): static
-    {
+    public static function for(string $filePath): static {
         // Normalize file path for cross-OS compatibility
         $filePath = static::normalizePath($filePath);
 
@@ -46,8 +43,7 @@ class Stringer
     /**
      * Normalize file path for cross-OS compatibility
      */
-    protected static function normalizePath(string $path): string
-    {
+    protected static function normalizePath(string $path): string {
         // First, normalize directory separators to the current OS
         $normalizedPath = str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $path);
 
@@ -100,8 +96,7 @@ class Stringer
         return $normalizedPath;
     }
 
-    protected function findLine(string $needle): ?array
-    {
+    protected function findLine(string $needle): ?array {
         // Search for the needle and return the line and its indentation
         $startPos = strpos($this->content, $needle);
         if ($startPos === false) {
@@ -122,8 +117,7 @@ class Stringer
         ];
     }
 
-    public function prepend(string $needle, string $contentToPrepend, bool $beforeBlock = false): static
-    {
+    public function prepend(string $needle, string $contentToPrepend, bool $beforeBlock = false): static {
         if (! $this->contains($needle)) {
             return $this; // Needle not found
         }
@@ -181,8 +175,7 @@ class Stringer
         return $this;
     }
 
-    public function append(string $needle, string $contentToAppend, bool $afterBlock = false): static
-    {
+    public function append(string $needle, string $contentToAppend, bool $afterBlock = false): static {
         if (! $this->contains($needle)) {
             return $this; // Needle not found
         }
@@ -251,8 +244,7 @@ class Stringer
         return $this;
     }
 
-    protected function findClosingParen(int $openingParenPos): ?int
-    {
+    protected function findClosingParen(int $openingParenPos): ?int {
         $stack = 0;
         $length = strlen($this->content);
 
@@ -270,8 +262,7 @@ class Stringer
         return null; // Closing parenthesis not found
     }
 
-    public function replace(string $needle, string $replacement): static
-    {
+    public function replace(string $needle, string $replacement): static {
         if ($lineInfo = $this->findLine($needle)) {
             // Replace the entire line containing the needle
             $this->content = substr_replace(
@@ -285,27 +276,23 @@ class Stringer
         return $this;
     }
 
-    public function newLine(): static
-    {
+    public function newLine(): static {
         $this->addNewLine = true; // Set the flag to add a new line
 
         return $this;
     }
 
-    public function indent(int $level): static
-    {
+    public function indent(int $level): static {
         $this->currentIndentLevel += $level;
 
         return $this;
     }
 
-    public function getIndentation(): string
-    {
+    public function getIndentation(): string {
         return str_repeat(' ', $this->baseIndentLevel + $this->currentIndentLevel);
     }
 
-    public function contains(string $needle): bool
-    {
+    public function contains(string $needle): bool {
         // Check if the needle has a wildcard for partial matching
         $isPartialMatch = str_starts_with($needle, '*') || str_ends_with($needle, '*');
 
@@ -320,8 +307,7 @@ class Stringer
         }
     }
 
-    public function save(): bool
-    {
+    public function save(): bool {
         // Convert line endings to platform-specific format when saving
         $contentToSave = $this->content;
 
@@ -333,13 +319,11 @@ class Stringer
         return (bool) file_put_contents($this->filePath, $contentToSave);
     }
 
-    public function getContent(): string
-    {
+    public function getContent(): string {
         return $this->content;
     }
 
-    public function prependBeforeLast(string $needle, string $replacement): static
-    {
+    public function prependBeforeLast(string $needle, string $replacement): static {
         $lastPos = strrpos($this->content, $needle);
 
         if ($lastPos !== false) {
@@ -362,8 +346,7 @@ class Stringer
         return $this;
     }
 
-    protected function findMethodDeclaration(string $needle): ?array
-    {
+    protected function findMethodDeclaration(string $needle): ?array {
         $lines = explode("\n", $this->content);
         $normalizedNeedle = preg_replace('/\s+/', ' ', trim($needle));
 
@@ -373,8 +356,10 @@ class Stringer
 
             // Check if current line contains the method declaration
             // and next line contains the opening brace
-            if (str_contains(preg_replace('/\s+/', ' ', $currentLine), $normalizedNeedle)
-                && str_contains($nextLine, '{')) {
+            if (
+                str_contains(preg_replace('/\s+/', ' ', $currentLine), $normalizedNeedle)
+                && str_contains($nextLine, '{')
+            ) {
 
                 $startPos = 0;
                 for ($j = 0; $j < $i; $j++) {
@@ -422,8 +407,7 @@ class Stringer
         return $this->findLine($needle);
     }
 
-    public function findChainedBlock(string $block): ?array
-    {
+    public function findChainedBlock(string $block): ?array {
         // Normalize the search block by removing extra whitespace
         $normalizedBlock = preg_replace('/\s+/', ' ', trim($block));
 
@@ -485,13 +469,11 @@ class Stringer
         return null;
     }
 
-    public function containsChainedBlock(string $block): bool
-    {
+    public function containsChainedBlock(string $block): bool {
         return $this->findChainedBlock($block) !== null;
     }
 
-    public function appendBlock(string $needle, string $contentToAppend, bool $afterBlock = false): static
-    {
+    public function appendBlock(string $needle, string $contentToAppend, bool $afterBlock = false): static {
         if (! $this->contains($needle)) {
             return $this;
         }
@@ -561,8 +543,7 @@ class Stringer
         return $this;
     }
 
-    public function deleteLine(string $needle): static
-    {
+    public function deleteLine(string $needle): static {
         if ($lineInfo = $this->findLine($needle)) {
             $this->content = substr_replace(
                 $this->content,

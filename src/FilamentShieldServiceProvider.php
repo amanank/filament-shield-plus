@@ -1,18 +1,16 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus;
+namespace Amanank\FilamentShield;
 
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Support\Utils;
 use Illuminate\Support\Facades\Gate;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class FilamentShieldServiceProvider extends PackageServiceProvider
-{
+class FilamentShieldServiceProvider extends PackageServiceProvider {
     use Concerns\HasAboutCommand;
 
-    public function configurePackage(Package $package): void
-    {
+    public function configurePackage(Package $package): void {
         $package
             ->name('filament-shield')
             ->hasConfigFile()
@@ -21,8 +19,7 @@ class FilamentShieldServiceProvider extends PackageServiceProvider
             ->hasCommands($this->getCommands());
     }
 
-    public function packageRegistered(): void
-    {
+    public function packageRegistered(): void {
         parent::packageRegistered();
 
         $this->app->scoped('filament-shield', function (): FilamentShield {
@@ -30,8 +27,7 @@ class FilamentShieldServiceProvider extends PackageServiceProvider
         });
     }
 
-    public function packageBooted(): void
-    {
+    public function packageBooted(): void {
         parent::packageBooted();
 
         $this->initAboutCommand();
@@ -51,8 +47,7 @@ class FilamentShieldServiceProvider extends PackageServiceProvider
         }
     }
 
-    protected function getCommands(): array
-    {
+    protected function getCommands(): array {
         return [
             Commands\GenerateCommand::class,
             Commands\InstallCommand::class,

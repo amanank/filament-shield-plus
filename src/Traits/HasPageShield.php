@@ -1,16 +1,14 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Traits;
+namespace Amanank\FilamentShield\Traits;
 
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Support\Utils;
 use Filament\Facades\Filament;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Str;
 
-trait HasPageShield
-{
-    public function booted(): void
-    {
+trait HasPageShield {
+    public function booted(): void {
         $this->beforeBooted();
 
         if (! static::canAccess()) {
@@ -34,19 +32,20 @@ trait HasPageShield
         $this->afterBooted();
     }
 
-    protected function beforeBooted(): void {}
+    protected function beforeBooted(): void {
+    }
 
-    protected function afterBooted(): void {}
+    protected function afterBooted(): void {
+    }
 
-    protected function beforeShieldRedirects(): void {}
+    protected function beforeShieldRedirects(): void {
+    }
 
-    protected function getShieldRedirectPath(): string
-    {
+    protected function getShieldRedirectPath(): string {
         return Filament::getUrl();
     }
 
-    protected static function getPermissionName(): string
-    {
+    protected static function getPermissionName(): string {
         return Str::of(class_basename(static::class))
             ->prepend(
                 Str::of(Utils::getPagePermissionPrefix())
@@ -56,13 +55,11 @@ trait HasPageShield
             ->toString();
     }
 
-    public static function shouldRegisterNavigation(array $parameters = []): bool
-    {
+    public static function shouldRegisterNavigation(array $parameters = []): bool {
         return static::canAccess() && parent::shouldRegisterNavigation();
     }
 
-    public static function canAccess(array $parameters = []): bool
-    {
+    public static function canAccess(array $parameters = []): bool {
         return Filament::auth()->user()->can(static::getPermissionName());
     }
 }

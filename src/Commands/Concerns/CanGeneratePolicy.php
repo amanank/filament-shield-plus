@@ -1,14 +1,12 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
+namespace Amanank\FilamentShield\Commands\Concerns;
 
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Support\Utils;
 use Illuminate\Support\Str;
 
-trait CanGeneratePolicy
-{
-    protected function generateModelName(string $name): string
-    {
+trait CanGeneratePolicy {
+    protected function generateModelName(string $name): string {
         return (string) Str::of($name)->studly()
             ->beforeLast('Resource')
             ->trim('/')
@@ -18,8 +16,7 @@ trait CanGeneratePolicy
             ->replace('/', '\\');
     }
 
-    protected function generatePolicyPath(array $entity): string
-    {
+    protected function generatePolicyPath(array $entity): string {
         $path = (new \ReflectionClass($entity['fqcn']::getModel()))->getFileName();
 
         if (Str::of($path)->contains(['vendor', 'src'])) {
@@ -41,8 +38,7 @@ trait CanGeneratePolicy
         return $basePath;
     }
 
-    protected function generatePolicyStubVariables(array $entity): array
-    {
+    protected function generatePolicyStubVariables(array $entity): array {
         $stubVariables = collect(Utils::getResourcePermissionPrefixes($entity['fqcn']))
             ->reduce(function ($gates, $permission) use ($entity) {
                 $gates[Str::studly($permission)] = $permission . '_' . $entity['resource'];
@@ -60,7 +56,8 @@ trait CanGeneratePolicy
 
         $stubVariables['namespace'] = Str::of($path)->contains(['vendor', 'src'])
             ? 'App\\' . Utils::getPolicyNamespace()
-            : Str::of($namespace)->replace('Models', Utils::getPolicyNamespace()); /** @phpstan-ignore-line */
+            : Str::of($namespace)->replace('Models', Utils::getPolicyNamespace());
+        /** @phpstan-ignore-line */
         $stubVariables['model_name'] = $entity['model'];
         $stubVariables['model_fqcn'] = $namespace . '\\' . $entity['model'];
         $stubVariables['model_variable'] = Str::of($entity['model'])->camel();

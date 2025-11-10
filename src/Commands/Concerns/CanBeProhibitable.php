@@ -1,10 +1,9 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
+namespace Amanank\FilamentShield\Commands\Concerns;
 
 // Introduced in Laravel 11.9 should be removed when support for Laravel 10 is dropped
-trait CanBeProhibitable
-{
+trait CanBeProhibitable {
     /**
      * Indicates if the command should be prohibited from running.
      *
@@ -18,8 +17,7 @@ trait CanBeProhibitable
      * @param  bool  $prohibit
      * @return void
      */
-    public static function prohibit($prohibit = true)
-    {
+    public static function prohibit($prohibit = true) {
         static::$prohibitedFromRunning = $prohibit;
     }
 
@@ -28,8 +26,7 @@ trait CanBeProhibitable
      *
      * @return bool
      */
-    protected function isProhibited(bool $quiet = false)
-    {
+    protected function isProhibited(bool $quiet = false) {
         if (! static::$prohibitedFromRunning) {
             return false;
         }

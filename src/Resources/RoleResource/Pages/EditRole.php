@@ -1,9 +1,9 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Resources\RoleResource\Pages;
+namespace Amanank\FilamentShield\Resources\RoleResource\Pages;
 
-use AmanAnk\FilamentShieldPlus\Resources\RoleResource;
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Resources\RoleResource;
+use Amanank\FilamentShield\Support\Utils;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Arr;

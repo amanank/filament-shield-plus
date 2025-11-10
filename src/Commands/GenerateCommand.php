@@ -1,9 +1,9 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Commands;
+namespace Amanank\FilamentShield\Commands;
 
-use AmanAnk\FilamentShieldPlus\Facades\FilamentShield;
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Facades\FilamentShield;
+use Amanank\FilamentShield\Support\Utils;
 use Filament\Facades\Filament;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;

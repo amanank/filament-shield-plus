@@ -1,17 +1,15 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Resources\RoleResource\Pages;
+namespace Amanank\FilamentShield\Resources\RoleResource\Pages;
 
-use AmanAnk\FilamentShieldPlus\Resources\RoleResource;
+use Amanank\FilamentShield\Resources\RoleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListRoles extends ListRecords
-{
+class ListRoles extends ListRecords {
     protected static string $resource = RoleResource::class;
 
-    protected function getActions(): array
-    {
+    protected function getActions(): array {
         return [
             Actions\CreateAction::make(),
         ];

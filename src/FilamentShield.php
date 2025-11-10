@@ -1,8 +1,8 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus;
+namespace Amanank\FilamentShield;
 
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Support\Utils;
 use Closure;
 use Filament\Facades\Filament;
 use Filament\Support\Concerns\EvaluatesClosures;

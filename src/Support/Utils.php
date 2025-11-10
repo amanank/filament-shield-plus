@@ -1,9 +1,9 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Support;
+namespace Amanank\FilamentShield\Support;
 
-use AmanAnk\FilamentShieldPlus\Contracts\HasShieldPermissions;
-use AmanAnk\FilamentShieldPlus\FilamentShield;
+use Amanank\FilamentShield\Contracts\HasShieldPermissions;
+use Amanank\FilamentShield\FilamentShield;
 use Filament\Facades\Filament;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Panel;

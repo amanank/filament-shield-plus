@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Contracts;
+namespace Amanank\FilamentShield\Contracts;
 
-interface HasShieldPermissions
-{
+interface HasShieldPermissions {
     public static function getPermissionPrefixes(): array;
 }

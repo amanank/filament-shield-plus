@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
+namespace Amanank\FilamentShield\Commands\Concerns;
 
-use AmanAnk\FilamentShieldPlus\Stringer;
+use Amanank\FilamentShield\Stringer;
 use Filament\Panel;
 
-trait CanMakePanelTenantable
-{
-    protected function makePanelTenantable(Panel $panel, string $panelPath, ?string $tenantModelClass): void
-    {
+trait CanMakePanelTenantable {
+    protected function makePanelTenantable(Panel $panel, string $panelPath, ?string $tenantModelClass): void {
         if (filled($tenantModelClass) && ! $panel->hasTenancy()) {
 
             Stringer::for($panelPath)
@@ -28,12 +26,11 @@ trait CanMakePanelTenantable
         }
     }
 
-    private function activateTenancy(string $panelPath): void
-    {
+    private function activateTenancy(string $panelPath): void {
         $stringer = Stringer::for($panelPath);
 
         $target = $stringer->contains('->plugins([') ? '->plugins([' : '->middleware([';
-        $shieldMiddlewareImportStatement = 'use AmanAnk\FilamentShieldPlus\Middleware\SyncShieldTenant;';
+        $shieldMiddlewareImportStatement = 'use Amanank\FilamentShield\Middleware\SyncShieldTenant;';
         $shieldMiddleware = 'SyncShieldTenant::class,';
         $tenantMiddlewareMarker = '->tenantMiddleware([';
 
@@ -43,14 +40,14 @@ trait CanMakePanelTenantable
 
         $stringer->when(
             value: (! $stringer->contains($shieldMiddleware) && $stringer->contains($tenantMiddlewareMarker)),
-            callback: fn (Stringer $stringer): bool => $stringer
+            callback: fn(Stringer $stringer): bool => $stringer
                 ->indent(4)
                 ->append('->tenantMiddleware([', $shieldMiddleware)
                 ->save()
         );
         $stringer->when(
             value: (! $stringer->contains($shieldMiddleware) && ! $stringer->contains($tenantMiddlewareMarker)),
-            callback: fn (Stringer $stringer): bool => $stringer
+            callback: fn(Stringer $stringer): bool => $stringer
                 ->append($target, $tenantMiddlewareMarker, true)
                 ->append($tenantMiddlewareMarker, '], isPersistent: true)')
                 ->indent(4)

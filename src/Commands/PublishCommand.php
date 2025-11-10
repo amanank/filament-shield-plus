@@ -1,6 +1,6 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Commands;
+namespace Amanank\FilamentShield\Commands;
 
 use Filament\Facades\Filament;
 use Illuminate\Console\Command;
@@ -12,15 +12,13 @@ use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
 
 #[AsCommand(name: 'shield:publish', description: "Publish Shield's Resource.")]
-class PublishCommand extends Command
-{
+class PublishCommand extends Command {
     use Concerns\CanBeProhibitable;
     use Concerns\CanManipulateFiles;
 
     protected $signature = 'shield:publish {panel}';
 
-    public function handle(Filesystem $filesystem): int
-    {
+    public function handle(Filesystem $filesystem): int {
         if ($this->isProhibited()) {
             return Command::FAILURE;
         }
@@ -58,7 +56,7 @@ class PublishCommand extends Command
         $filesystem->ensureDirectoryExists($newResourcePath);
         $filesystem->copyDirectory(__DIR__ . '/../Resources', $newResourcePath);
 
-        $currentNamespace = 'BezhanSalleh\\FilamentShield\\Resources';
+        $currentNamespace = 'Amanank\\FilamentShield\\Resources';
 
         $this->replaceInFile($roleResourcePath, $currentNamespace, $newResourceNamespace);
         $this->replaceInFile($newResourcePath . '/RoleResource/Pages/CreateRole.php', $currentNamespace, $newResourceNamespace);

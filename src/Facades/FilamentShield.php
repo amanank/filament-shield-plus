@@ -1,11 +1,11 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Facades;
+namespace Amanank\FilamentShield\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @method static \AmanAnk\FilamentShieldPlus\FilamentShield configurePermissionIdentifierUsing(\Closure $callback)
+ * @method static \Amanank\FilamentShield\FilamentShield configurePermissionIdentifierUsing(\Closure $callback)
  * @method static string getPermissionIdentifier(string $resource)
  * @method static void generateForResource(array $entity)
  * @method static void generateForPage(string $page)
@@ -22,12 +22,10 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Illuminate\Support\Collection|null getCustomPermissions()
  * @method static mixed evaluate(mixed $value, array $namedInjections = [], array $typedInjections = [])
  *
- * @see \AmanAnk\FilamentShieldPlus\FilamentShield
+ * @see \Amanank\FilamentShield\FilamentShield
  */
-class FilamentShield extends Facade
-{
-    protected static function getFacadeAccessor(): string
-    {
+class FilamentShield extends Facade {
+    protected static function getFacadeAccessor(): string {
         return 'filament-shield';
     }
 }

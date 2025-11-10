@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Traits;
+namespace Amanank\FilamentShield\Traits;
 
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Support\Utils;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 

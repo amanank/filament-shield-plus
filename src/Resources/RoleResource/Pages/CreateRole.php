@@ -1,21 +1,19 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Resources\RoleResource\Pages;
+namespace Amanank\FilamentShield\Resources\RoleResource\Pages;
 
-use AmanAnk\FilamentShieldPlus\Resources\RoleResource;
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Resources\RoleResource;
+use Amanank\FilamentShield\Support\Utils;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
-class CreateRole extends CreateRecord
-{
+class CreateRole extends CreateRecord {
     protected static string $resource = RoleResource::class;
 
     public Collection $permissions;
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
+    protected function mutateFormDataBeforeCreate(array $data): array {
         $this->permissions = collect($data)
             ->filter(function ($permission, $key) {
                 return ! in_array($key, ['name', 'guard_name', 'select_all', Utils::getTenantModelForeignKey()]);
@@ -31,8 +29,7 @@ class CreateRole extends CreateRecord
         return Arr::only($data, ['name', 'guard_name']);
     }
 
-    protected function afterCreate(): void
-    {
+    protected function afterCreate(): void {
         $permissionModels = collect();
         $this->permissions->each(function ($permission) use ($permissionModels) {
             $permissionModels->push(Utils::getPermissionModel()::firstOrCreate([

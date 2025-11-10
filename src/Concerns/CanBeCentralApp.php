@@ -2,23 +2,20 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Concerns;
+namespace Amanank\FilamentShield\Concerns;
 
 use Closure;
 
-trait CanBeCentralApp
-{
+trait CanBeCentralApp {
     protected bool | Closure $isCentralApp = false;
 
-    public function centralApp(bool | Closure $condition = true): static
-    {
+    public function centralApp(bool | Closure $condition = true): static {
         $this->isCentralApp = $condition;
 
         return $this;
     }
 
-    public function isCentralApp(): bool
-    {
+    public function isCentralApp(): bool {
         return (bool) $this->evaluate($this->isCentralApp);
     }
 }

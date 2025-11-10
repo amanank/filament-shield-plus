@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Traits;
+namespace Amanank\FilamentShield\Traits;
 
-use AmanAnk\FilamentShieldPlus\Facades\FilamentShield;
-use AmanAnk\FilamentShieldPlus\FilamentShieldPlugin;
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Facades\FilamentShield;
+use Amanank\FilamentShield\FilamentShieldPlugin;
+use Amanank\FilamentShield\Support\Utils;
 use Filament\Forms;
 use Filament\Forms\Components\Component;
 use Illuminate\Database\Eloquent\Model;

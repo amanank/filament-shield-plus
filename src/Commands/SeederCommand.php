@@ -1,14 +1,13 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Commands;
+namespace Amanank\FilamentShield\Commands;
 
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Support\Utils;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'shield:seeder')]
-class SeederCommand extends Command
-{
+class SeederCommand extends Command {
     use Concerns\CanManipulateFiles;
 
     /**
@@ -29,8 +28,7 @@ class SeederCommand extends Command
      */
     public $description = 'Create a seeder file from existing/configured roles and permission, that could be used within your deploy script.';
 
-    public function handle(): int
-    {
+    public function handle(): int {
         $path = database_path('seeders/ShieldSeeder.php');
 
         if (! $this->option('force') && $this->checkForCollision(paths: [$path])) {
@@ -74,8 +72,8 @@ class SeederCommand extends Command
 
         if ((Utils::getPermissionModel()::exists() && is_null($option)) || $option === 'direct_permissions') {
             $directPermissions = collect(Utils::getPermissionModel()::get())
-                ->filter(fn ($permission) => ! in_array($permission->name, $directPermissionNames->unique()->flatten()->all()))
-                ->map(fn ($permission) => [
+                ->filter(fn($permission) => ! in_array($permission->name, $directPermissionNames->unique()->flatten()->all()))
+                ->map(fn($permission) => [
                     'name' => $permission->name,
                     'guard_name' => $permission->guard_name,
                 ]);

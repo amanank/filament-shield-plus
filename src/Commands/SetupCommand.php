@@ -1,9 +1,9 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Commands;
+namespace Amanank\FilamentShield\Commands;
 
-use AmanAnk\FilamentShieldPlus\Stringer;
-use AmanAnk\FilamentShieldPlus\Support\Utils;
+use Amanank\FilamentShield\Stringer;
+use Amanank\FilamentShield\Support\Utils;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -15,8 +15,7 @@ use Throwable;
 use function Laravel\Prompts\confirm;
 
 #[AsCommand(name: 'shield:setup', description: 'Setup and install core requirements for Shield')]
-class SetupCommand extends Command
-{
+class SetupCommand extends Command {
     use Concerns\CanBeProhibitable;
     use Concerns\CanManipulateFiles;
 
@@ -29,8 +28,7 @@ class SetupCommand extends Command
 
     public $description = 'Setup and install core requirements for Shield';
 
-    public function handle(): int
-    {
+    public function handle(): int {
         if ($this->isProhibited()) {
             return Command::FAILURE;
         }
@@ -73,13 +71,13 @@ class SetupCommand extends Command
         if (! $this->option('minimal')) {
             if (confirm('Would you like to show some love by starring the repo?')) {
                 if (PHP_OS_FAMILY === 'Darwin') {
-                    exec('open https://github.com/bezhanSalleh/filament-shield');
+                    exec('open https://github.com/amanank/filament-shield-plus');
                 }
                 if (PHP_OS_FAMILY === 'Linux') {
-                    exec('xdg-open https://github.com/bezhanSalleh/filament-shield');
+                    exec('xdg-open https://github.com/amanank/filament-shield-plus');
                 }
                 if (PHP_OS_FAMILY === 'Windows') {
-                    exec('start https://github.com/bezhanSalleh/filament-shield');
+                    exec('start https://github.com/amanank/filament-shield-plus');
                 }
 
                 $this->components->info('Thank you!');
@@ -89,22 +87,19 @@ class SetupCommand extends Command
         return Command::SUCCESS;
     }
 
-    protected function CheckIfAlreadyInstalled(): bool
-    {
+    protected function CheckIfAlreadyInstalled(): bool {
         $count = $this->getTables()
-            ->filter(fn (string $table) => Schema::hasTable($table))
+            ->filter(fn(string $table) => Schema::hasTable($table))
             ->count();
 
         return $count !== 0;
     }
 
-    protected function getTables(): Collection
-    {
+    protected function getTables(): Collection {
         return collect(['role_has_permissions', 'model_has_roles', 'model_has_permissions', 'roles', 'permissions']);
     }
 
-    protected function install(bool $fresh = false): void
-    {
+    protected function install(bool $fresh = false): void {
         $this->{$this->option('minimal') ? 'callSilent' : 'call'}('vendor:publish', [
             '--tag' => 'filament-shield-config',
             '--force' => $this->option('force') || $fresh,
@@ -185,7 +180,7 @@ class SetupCommand extends Command
             try {
                 Schema::disableForeignKeyConstraints();
                 DB::table('migrations')->where('migration', 'like', '%_create_permission_tables')->delete();
-                $this->getTables()->each(fn ($table) => DB::statement('DROP TABLE IF EXISTS ' . $table));
+                $this->getTables()->each(fn($table) => DB::statement('DROP TABLE IF EXISTS ' . $table));
                 Schema::enableForeignKeyConstraints();
             } catch (Throwable $e) {
                 $this->components->info($e);
@@ -203,12 +198,11 @@ class SetupCommand extends Command
         $this->components->info('Filament Shield🛡 is now active ✅');
     }
 
-    protected function getModel(string $model): ?Model
-    {
+    protected function getModel(string $model): ?Model {
         $model = str($model)->contains('\\')
             ? $model
             : str($model)->prepend('App\\Models\\')
-                ->toString();
+            ->toString();
 
         if (! class_exists($model) || ! (app($model) instanceof Model)) {
             $this->components->error("Model not found: {$model}");

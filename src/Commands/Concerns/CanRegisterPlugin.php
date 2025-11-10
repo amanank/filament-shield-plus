@@ -2,17 +2,15 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
+namespace Amanank\FilamentShield\Commands\Concerns;
 
-use AmanAnk\FilamentShieldPlus\Stringer;
+use Amanank\FilamentShield\Stringer;
 
-trait CanRegisterPlugin
-{
-    protected function registerPlugin(string $panelPath, bool $centralApp, string $tenantModelClass): void
-    {
+trait CanRegisterPlugin {
+    protected function registerPlugin(string $panelPath, bool $centralApp, string $tenantModelClass): void {
         $stringer = Stringer::for($panelPath);
 
-        $shieldPluginImportStatement = 'use AmanAnk\FilamentShieldPlus\FilamentShieldPlugin;';
+        $shieldPluginImportStatement = 'use Amanank\FilamentShield\FilamentShieldPlugin;';
         $shieldPlugin = 'FilamentShieldPlugin::make()';
         $pluginsArray = "->plugins([\n";
         $pluginsTarget = '->middleware([';
@@ -24,35 +22,37 @@ trait CanRegisterPlugin
             $stringer
                 ->when(
                     value: ! $stringer->contains($shieldPluginImportStatement),
-                    callback: fn (Stringer $stringer): Stringer => $stringer
+                    callback: fn(Stringer $stringer): Stringer => $stringer
                         ->append('use', $shieldPluginImportStatement)
                 )
-                ->when( /** @phpstan-ignore-next-line */
+                ->when(
+                    /** @phpstan-ignore-next-line */
                     value: $stringer->contains($pluginsArray) && (! $stringer->contains($shieldPlugin)),
-                    callback: fn (Stringer $stringer): Stringer => $stringer
+                    callback: fn(Stringer $stringer): Stringer => $stringer
                         ->when(
                             value: $centralApp,
-                            callback: fn (Stringer $stringer) => $stringer
+                            callback: fn(Stringer $stringer) => $stringer
                                 ->indent(4)
                                 ->append($pluginsArray, $shieldPlugin)
                                 ->append($shieldPlugin, '->centralApp(' . $tenantModelClass . '),'),
-                            default: fn (Stringer $stringer) => $stringer
+                            default: fn(Stringer $stringer) => $stringer
                                 ->indent(4)
                                 ->append($pluginsArray, $shieldPlugin . ',')
                         ),
                 )
-                ->when(/** @phpstan-ignore-next-line */
+                ->when(
+                    /** @phpstan-ignore-next-line */
                     value: (! $stringer->contains($shieldPlugin) && ! $stringer->contains($pluginsArray)),
-                    callback: fn (Stringer $stringer): Stringer => $stringer
+                    callback: fn(Stringer $stringer): Stringer => $stringer
                         ->when(
                             value: $centralApp,
-                            callback: fn (Stringer $stringer) => $stringer
+                            callback: fn(Stringer $stringer) => $stringer
                                 ->append($pluginsTarget, $pluginsArray, true)
                                 ->append($pluginsArray, '])')
                                 ->indent(4)
                                 ->append($pluginsArray, $shieldPlugin)
                                 ->append($shieldPlugin, '->centralApp(' . $tenantModelClass . '),'),
-                            default: fn (Stringer $stringer) => $stringer
+                            default: fn(Stringer $stringer) => $stringer
                                 ->append($pluginsTarget, $pluginsArray, true)
                                 ->append($pluginsArray, '])')
                                 ->indent(4)
@@ -62,8 +62,6 @@ trait CanRegisterPlugin
                 ->save();
 
             $this->components->info('Shield plugin has been registered successfully!');
-
         }
-
     }
 }

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Commands;
+namespace Amanank\FilamentShield\Commands;
 
 use Filament\Facades\Filament;
 use Illuminate\Console\Command;
@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Process;
 use Symfony\Component\Console\Attribute\AsCommand;
 
 #[AsCommand(name: 'shield:install')]
-class InstallCommand extends Command implements PromptsForMissingInput
-{
+class InstallCommand extends Command implements PromptsForMissingInput {
     use Concerns\CanBeProhibitable;
     use Concerns\CanMakePanelTenantable;
     use Concerns\CanManipulateFiles;
@@ -24,8 +23,7 @@ class InstallCommand extends Command implements PromptsForMissingInput
     /** @var string */
     protected $description = 'Install and configure shield for the given Filament Panel';
 
-    public function handle(): int
-    {
+    public function handle(): int {
         if ($this->isProhibited()) {
             return Command::FAILURE;
         }

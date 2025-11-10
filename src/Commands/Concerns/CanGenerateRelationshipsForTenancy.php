@@ -2,19 +2,17 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
+namespace Amanank\FilamentShield\Commands\Concerns;
 
-use AmanAnk\FilamentShieldPlus\Stringer;
+use Amanank\FilamentShield\Stringer;
 use Filament\Facades\Filament;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\Builder;
 use ReflectionClass;
 
-trait CanGenerateRelationshipsForTenancy
-{
-    protected function generateRelationships(Panel $panel): void
-    {
+trait CanGenerateRelationshipsForTenancy {
+    protected function generateRelationships(Panel $panel): void {
         collect($panel->getResources())
             ->values()
             ->filter(function ($resource): bool {
@@ -89,8 +87,7 @@ trait CanGenerateRelationshipsForTenancy
         $this->components->info('Relationships have been generated successfully!');
     }
 
-    protected function getModel(string $model): ?Model
-    {
+    protected function getModel(string $model): ?Model {
         if (! class_exists($model)) {
             return null;
         }
@@ -98,20 +95,17 @@ trait CanGenerateRelationshipsForTenancy
         return app($model);
     }
 
-    protected function getModelSchema(string $model): Builder
-    {
+    protected function getModelSchema(string $model): Builder {
         return $this->getModel($model)
             ->getConnection()
             ->getSchemaBuilder();
     }
 
-    protected function getModelTable(string $model): string
-    {
+    protected function getModelTable(string $model): string {
         return $this->getModel($model)->getTable();
     }
 
-    protected function guessResourceModelRelationshipType(string $model, string $tenantModel): ?string
-    {
+    protected function guessResourceModelRelationshipType(string $model, string $tenantModel): ?string {
         $schema = $this->getModelSchema($model);
         $table = $this->getModelTable($model);
         $columns = $schema->getColumnListing($table);
@@ -128,8 +122,7 @@ trait CanGenerateRelationshipsForTenancy
         };
     }
 
-    protected function guessTenantModelRelationshipType(string $model, string $tenantModel): ?string
-    {
+    protected function guessTenantModelRelationshipType(string $model, string $tenantModel): ?string {
         $resourceModelRelationshipType = $this->guessResourceModelRelationshipType($model, $tenantModel);
 
         return match ($resourceModelRelationshipType) {
@@ -139,8 +132,7 @@ trait CanGenerateRelationshipsForTenancy
         };
     }
 
-    protected function methodStubGenerator(string $name, string $relationshipName, string $related): string
-    {
+    protected function methodStubGenerator(string $name, string $relationshipName, string $related): string {
         $returnType = str($related)->beforeLast('::')->toString();
         $stubs = [
             'belongsTo' => "        /** @return BelongsTo<{$returnType}, self> */\n    public function {$name}(): BelongsTo\n    {\n        return \$this->belongsTo({$related});\n    }",
@@ -152,8 +144,7 @@ trait CanGenerateRelationshipsForTenancy
         return $stubs[$relationshipName] ?? "// No relationship defined for the given name: {$relationshipName}\n";
     }
 
-    protected function addModelReturnTypeImportStatement(string $relationshipName): ?string
-    {
+    protected function addModelReturnTypeImportStatement(string $relationshipName): ?string {
         return match ($relationshipName) {
             'belongsTo' => 'use Illuminate\Database\Eloquent\Relations\BelongsTo;',
             'hasMany' => 'use Illuminate\Database\Eloquent\Relations\HasMany;',

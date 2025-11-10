@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Concerns;
+namespace Amanank\FilamentShield\Concerns;
 
-trait CanCustomizeColumns
-{
+trait CanCustomizeColumns {
     protected int | string | array $checkboxListColumnSpan = 'full';
 
     protected int | string | array $checkboxListColumns = [
@@ -29,87 +28,73 @@ trait CanCustomizeColumns
         'lg' => 4,
     ];
 
-    public function checkboxListColumns(int | string | array $columns): static
-    {
+    public function checkboxListColumns(int | string | array $columns): static {
         $this->checkboxListColumns = $columns;
 
         return $this;
     }
 
-    public function checkboxListColumnSpan(int | string | array $columnSpan): static
-    {
+    public function checkboxListColumnSpan(int | string | array $columnSpan): static {
         $this->checkboxListColumnSpan = $columnSpan;
 
         return $this;
     }
 
-    public function gridColumns(int | string | array $columns): static
-    {
+    public function gridColumns(int | string | array $columns): static {
         $this->gridColumns = $columns;
 
         return $this;
     }
 
-    public function resourceCheckboxListColumns(int | string | array $columns): static
-    {
+    public function resourceCheckboxListColumns(int | string | array $columns): static {
         $this->resourceCheckboxListColumns = $columns;
 
         return $this;
     }
 
-    public function resourceCheckboxListColumnSpan(int | string | array $columnSpan): static
-    {
+    public function resourceCheckboxListColumnSpan(int | string | array $columnSpan): static {
         $this->resourceCheckboxListColumnSpan = $columnSpan;
 
         return $this;
     }
 
-    public function sectionColumns(int | string | array $columns): static
-    {
+    public function sectionColumns(int | string | array $columns): static {
         $this->sectionColumns = $columns;
 
         return $this;
     }
 
-    public function sectionColumnSpan(int | string | array $columnSpan): static
-    {
+    public function sectionColumnSpan(int | string | array $columnSpan): static {
         $this->sectionColumnSpan = $columnSpan;
 
         return $this;
     }
 
-    public function getCheckboxListColumns(): int | string | array
-    {
+    public function getCheckboxListColumns(): int | string | array {
         return $this->checkboxListColumns;
     }
 
-    public function getCheckboxListColumnSpan(): int | string | array
-    {
+    public function getCheckboxListColumnSpan(): int | string | array {
         return $this->checkboxListColumnSpan;
     }
 
-    public function getGridColumns(): int | string | array
-    {
+    public function getGridColumns(): int | string | array {
         return $this->gridColumns;
     }
 
-    public function getResourceCheckboxListColumns(): int | string | array
-    {
+    public function getResourceCheckboxListColumns(): int | string | array {
         return $this->resourceCheckboxListColumns;
     }
 
-    public function getResourceCheckboxListColumnSpan(): int | string | array
-    {
+    public function getResourceCheckboxListColumnSpan(): int | string | array {
         return $this->resourceCheckboxListColumnSpan;
     }
 
-    public function getSectionColumns(): int | string | array
-    {
+    public function getSectionColumns(): int | string | array {
         return $this->sectionColumns;
     }
 
-    public function getSectionColumnSpan(): int | string | array
-    {
+    public function getSectionColumnSpan(): int | string | array {
         return $this->sectionColumnSpan;
     }
 }

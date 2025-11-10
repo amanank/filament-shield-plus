@@ -17,8 +17,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Aman Ank",
-            "email": "aman@example.com",
+            "name": "Bezhan Salleh",
+            "email": "bezhan_salleh@yahoo.com",
             "role": "Developer"
         }
     ],
@@ -43,13 +43,13 @@
     },
     "autoload": {
         "psr-4": {
-            "BezhanSalleh\\FilamentShield\\": "src",
-            "BezhanSalleh\\FilamentShield\\Database\\Factories\\": "database/factories"
+            "Amanank\\FilamentShield\\": "src",
+            "Amanank\\FilamentShield\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "BezhanSalleh\\FilamentShield\\Tests\\": "tests"
+            "Amanank\\FilamentShield\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -69,10 +69,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "BezhanSalleh\\FilamentShield\\FilamentShieldServiceProvider"
+                "Amanank\\FilamentShield\\FilamentShieldServiceProvider"
             ],
             "aliases": {
-                "FilamentShield": "BezhanSalleh\\FilamentShield\\Facades\\FilamentShield"
+                "FilamentShield": "Amanank\\FilamentShield\\Facades\\FilamentShield"
             }
         },
         "branch-alias": {

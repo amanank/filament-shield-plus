@@ -1,14 +1,12 @@
 <?php
 
-namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
+namespace Amanank\FilamentShield\Commands\Concerns;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
-trait CanManipulateFiles
-{
-    protected function checkForCollision(array $paths): bool
-    {
+trait CanManipulateFiles {
+    protected function checkForCollision(array $paths): bool {
         foreach ($paths as $path) {
             if ($this->fileExists($path)) {
                 $this->components->error("$path already exists, aborting.");
@@ -20,8 +18,7 @@ trait CanManipulateFiles
         return false;
     }
 
-    protected function copyStubToApp(string $stub, string $targetPath, array $replacements = []): void
-    {
+    protected function copyStubToApp(string $stub, string $targetPath, array $replacements = []): void {
         $filesystem = new Filesystem;
 
         if (! $this->fileExists($stubPath = base_path('stubs' . DIRECTORY_SEPARATOR . 'filament-shield' . DIRECTORY_SEPARATOR . "{$stub}.stub"))) {
@@ -39,15 +36,13 @@ trait CanManipulateFiles
         $this->writeFile($targetPath, $stub);
     }
 
-    protected function fileExists(string $path): bool
-    {
+    protected function fileExists(string $path): bool {
         $filesystem = new Filesystem;
 
         return $filesystem->exists($path);
     }
 
-    protected function writeFile(string $path, string $contents): void
-    {
+    protected function writeFile(string $path, string $contents): void {
         $filesystem = new Filesystem;
 
         $filesystem->ensureDirectoryExists(
@@ -58,16 +53,14 @@ trait CanManipulateFiles
         $filesystem->put($path, $contents);
     }
 
-    protected function replaceInFile(string $file, string $search, string $replace): void
-    {
+    protected function replaceInFile(string $file, string $search, string $replace): void {
         file_put_contents(
             $file,
             str_replace($search, $replace, file_get_contents($file))
         );
     }
 
-    protected function copy(string $source, string $destination): bool
-    {
+    protected function copy(string $source, string $destination): bool {
         $filesystem = new Filesystem;
 
         if (! $this->fileExists($destination)) {

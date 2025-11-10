@@ -2,21 +2,18 @@
 
 declare(strict_types=1);
 
-namespace AmanAnk\FilamentShieldPlus\Concerns;
+namespace Amanank\FilamentShield\Concerns;
 
-trait CanLocalizePermissionLabels
-{
+trait CanLocalizePermissionLabels {
     protected bool $arePermissionLabelsLocalized = true;
 
-    public function localizePermissionLabels(bool $condition = true): static
-    {
+    public function localizePermissionLabels(bool $condition = true): static {
         $this->arePermissionLabelsLocalized = $condition;
 
         return $this;
     }
 
-    public function hasLocalizedPermissionLabels(): bool
-    {
+    public function hasLocalizedPermissionLabels(): bool {
         return $this->arePermissionLabelsLocalized;
     }
 }
