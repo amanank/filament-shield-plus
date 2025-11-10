@@ -22,7 +22,7 @@ trait HasAboutCommand {
             'Tenant Model' => Utils::isTenancyEnabled() && filled($model = config()->get('filament-shield.tenant_model')) ? $model : null,
             'Translations' => is_dir(resource_path('resource/lang/vendor/filament-shield')) ? '<fg=red;options=bold>PUBLISHED</>' : '<fg=green;options=bold>NOT PUBLISHED</>',
             'Views' => is_dir(resource_path('views/vendor/filament-shield')) ? '<fg=red;options=bold>PUBLISHED</>' : '<fg=green;options=bold>NOT PUBLISHED</>',
-            'Version' => InstalledVersions::getPrettyVersion('Amanank/filament-shield'),
+            'Version' => InstalledVersions::getPrettyVersion('amanank/filament-shield-plus'),
         ]);
     }
 
