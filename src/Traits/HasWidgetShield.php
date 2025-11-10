@@ -2,7 +2,7 @@
 
 namespace AmanAnk\FilamentShieldPlus\Traits;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Filament\Facades\Filament;
 use Illuminate\Support\Str;
 

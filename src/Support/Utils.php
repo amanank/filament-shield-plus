@@ -2,8 +2,8 @@
 
 namespace AmanAnk\FilamentShieldPlus\Support;
 
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use BezhanSalleh\FilamentShield\FilamentShield;
+use AmanAnk\FilamentShieldPlus\Contracts\HasShieldPermissions;
+use AmanAnk\FilamentShieldPlus\FilamentShield;
 use Filament\Facades\Filament;
 use Filament\Pages\SubNavigationPosition;
 use Filament\Panel;

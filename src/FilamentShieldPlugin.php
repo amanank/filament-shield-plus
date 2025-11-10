@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AmanAnk\FilamentShieldPlus;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;

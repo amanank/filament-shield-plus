@@ -2,8 +2,8 @@
 
 namespace AmanAnk\FilamentShieldPlus\Resources\RoleResource\Pages;
 
-use BezhanSalleh\FilamentShield\Resources\RoleResource;
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Resources\RoleResource;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 use Illuminate\Support\Arr;

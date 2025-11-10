@@ -2,11 +2,11 @@
 
 namespace AmanAnk\FilamentShieldPlus\Resources;
 
-use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
-use BezhanSalleh\FilamentShield\Forms\ShieldSelectAllToggle;
-use BezhanSalleh\FilamentShield\Resources\RoleResource\Pages;
-use BezhanSalleh\FilamentShield\Support\Utils;
-use BezhanSalleh\FilamentShield\Traits\HasShieldFormComponents;
+use AmanAnk\FilamentShieldPlus\Contracts\HasShieldPermissions;
+use AmanAnk\FilamentShieldPlus\Forms\ShieldSelectAllToggle;
+use AmanAnk\FilamentShieldPlus\Resources\RoleResource\Pages;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Traits\HasShieldFormComponents;
 use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;

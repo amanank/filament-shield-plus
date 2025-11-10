@@ -2,7 +2,7 @@
 
 namespace AmanAnk\FilamentShieldPlus;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Closure;
 use Filament\Facades\Filament;
 use Filament\Support\Concerns\EvaluatesClosures;

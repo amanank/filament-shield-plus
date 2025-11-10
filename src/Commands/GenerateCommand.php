@@ -2,8 +2,8 @@
 
 namespace AmanAnk\FilamentShieldPlus\Commands;
 
-use BezhanSalleh\FilamentShield\Facades\FilamentShield;
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Facades\FilamentShield;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Filament\Facades\Filament;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;

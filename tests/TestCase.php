@@ -2,7 +2,7 @@
 
 namespace AmanAnk\FilamentShieldPlus\Tests;
 
-use BezhanSalleh\FilamentShield\FilamentShieldServiceProvider;
+use AmanAnk\FilamentShieldPlus\FilamentShieldServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AmanAnk\FilamentShieldPlus\Traits;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Filament\Panel;
 
 trait HasPanelShield

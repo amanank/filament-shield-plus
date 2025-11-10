@@ -2,7 +2,7 @@
 
 namespace AmanAnk\FilamentShieldPlus\Commands;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Attribute\AsCommand;
 

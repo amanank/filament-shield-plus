@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
 
-use BezhanSalleh\FilamentShield\Stringer;
+use AmanAnk\FilamentShieldPlus\Stringer;
 
 trait CanRegisterPlugin
 {
@@ -12,7 +12,7 @@ trait CanRegisterPlugin
     {
         $stringer = Stringer::for($panelPath);
 
-        $shieldPluginImportStatement = 'use BezhanSalleh\FilamentShield\FilamentShieldPlugin;';
+        $shieldPluginImportStatement = 'use AmanAnk\FilamentShieldPlus\FilamentShieldPlugin;';
         $shieldPlugin = 'FilamentShieldPlugin::make()';
         $pluginsArray = "->plugins([\n";
         $pluginsTarget = '->middleware([';

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
 
-use BezhanSalleh\FilamentShield\Stringer;
+use AmanAnk\FilamentShieldPlus\Stringer;
 use Filament\Facades\Filament;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Model;

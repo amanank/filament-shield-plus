@@ -2,7 +2,7 @@
 
 namespace AmanAnk\FilamentShieldPlus\Resources\RoleResource\Pages;
 
-use BezhanSalleh\FilamentShield\Resources\RoleResource;
+use AmanAnk\FilamentShieldPlus\Resources\RoleResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ViewRecord;
 

@@ -2,7 +2,7 @@
 
 namespace AmanAnk\FilamentShieldPlus\Commands\Concerns;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Illuminate\Support\Str;
 
 trait CanGeneratePolicy

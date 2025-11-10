@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace AmanAnk\FilamentShieldPlus\Concerns;
 
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Composer\InstalledVersions;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Console\AboutCommand;

@@ -2,8 +2,8 @@
 
 namespace AmanAnk\FilamentShieldPlus\Commands;
 
-use BezhanSalleh\FilamentShield\Stringer;
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Stringer;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;

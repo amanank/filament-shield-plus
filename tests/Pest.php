@@ -1,5 +1,5 @@
 <?php
 
-use BezhanSalleh\FilamentShield\Tests\TestCase;
+use AmanAnk\FilamentShieldPlus\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace AmanAnk\FilamentShieldPlus\Traits;
 
-use BezhanSalleh\FilamentShield\Facades\FilamentShield;
-use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
-use BezhanSalleh\FilamentShield\Support\Utils;
+use AmanAnk\FilamentShieldPlus\Facades\FilamentShield;
+use AmanAnk\FilamentShieldPlus\FilamentShieldPlugin;
+use AmanAnk\FilamentShieldPlus\Support\Utils;
 use Filament\Forms;
 use Filament\Forms\Components\Component;
 use Illuminate\Database\Eloquent\Model;
