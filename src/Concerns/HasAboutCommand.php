@@ -9,10 +9,8 @@ use Composer\InstalledVersions;
 use Filament\Facades\Filament;
 use Illuminate\Foundation\Console\AboutCommand;
 
-trait HasAboutCommand
-{
-    public function initAboutCommand()
-    {
+trait HasAboutCommand {
+    public function initAboutCommand() {
         AboutCommand::add('Shield', [
             'Auth Provider' => Utils::getAuthProviderFQCN() . '|' . static::authProviderConfigured(),
             // 'Resource' => Utils::isResourcePublished(Filament::getCurrentPanel()) ? '<fg=red;options=bold>PUBLISHED</>' : '<fg=green;options=bold>NOT PUBLISHED</>',
@@ -28,8 +26,7 @@ trait HasAboutCommand
         ]);
     }
 
-    protected static function authProviderConfigured(): string
-    {
+    protected static function authProviderConfigured(): string {
         if (class_exists(Utils::getAuthProviderFQCN())) {
             return Utils::isAuthProviderConfigured()
                 ? '<fg=green;options=bold>CONFIGURED</>'
